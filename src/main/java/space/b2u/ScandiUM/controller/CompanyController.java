@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import space.b2u.ScandiUM.constants.API;
 import space.b2u.ScandiUM.entity.Company;
+import space.b2u.ScandiUM.entity.QueryResult;
 import space.b2u.ScandiUM.exception.ResourceNotFoundException;
 import space.b2u.ScandiUM.repository.CompanyRepository;
 
@@ -36,7 +40,9 @@ public class CompanyController {
     }
 
     @GetMapping("/companies/search/{param}")
-    public List<Company> findCompany(@PathVariable String param){
-        return ListUtils.union(repository.findByInn(param), repository.findByNameContainingIgnoreCase(param));
+    public QueryResult findCompany(@PathVariable String param){
+        QueryResult queryResult = new QueryResult();
+        queryResult.setResults(ListUtils.union(repository.findByInn(param), repository.findByNameContainingIgnoreCase(param)));
+        return queryResult;
     }
 }
