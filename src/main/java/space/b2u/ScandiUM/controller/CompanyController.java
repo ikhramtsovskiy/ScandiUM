@@ -1,13 +1,9 @@
 package space.b2u.ScandiUM.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import space.b2u.ScandiUM.constants.API;
@@ -40,9 +36,11 @@ public class CompanyController {
     }
 
     @GetMapping("/companies/search/{param}")
-    public QueryResult findCompany(@PathVariable String param){
-        QueryResult queryResult = new QueryResult();
-        queryResult.setResults(ListUtils.union(repository.findByInn(param), repository.findByNameContainingIgnoreCase(param)));
+    public QueryResult<Company> findCompany(@PathVariable String param){
+        QueryResult<Company> queryResult = new QueryResult<>();
+        List<Company> result = ListUtils.union(repository.findByInn(param), repository.findByNameContainingIgnoreCase(param));
+        queryResult.setResults(result);
+        queryResult.setCount(result.size());
         return queryResult;
     }
 }
