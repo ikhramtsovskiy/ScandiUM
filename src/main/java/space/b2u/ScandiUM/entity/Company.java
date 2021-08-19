@@ -15,23 +15,31 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="inn")
+    @Column(name="ogrn")
+    private String ogrn;
+    @Column(name = "inn")
     private String inn;
-
-    @Column(name="name")
-    private String name;
-
-    @Column(name="branch_count")
-    private Integer branchCount;
-
-    @Column(name="address")
+    @Column(name="kpp")
+    private String kpp;
+    @Column(name="full_name")
+    private String fullName;
+    @Column(name = "short_name")
+    private String shortName;
+    @Column(name = "branch_count")
+    private String branchCount;
+    @Column(name = "okved")
+    private String okved;
+    @Column(name = "addr")
     private String address;
+    @Column(name = "geo_lat")
+    private Double lattitude;
+    @Column(name = "geo_lon")
+    private Double longitude;
+    @Column(name="post")
+    private String post;
+    @Column(name="manager")
+    private String manager;
 
-    @Column(name="latitude")
-    private Float latitude;
-
-    @Column(name="longitude")
-    private Float Longitude;
 
     public Company() { }
 }

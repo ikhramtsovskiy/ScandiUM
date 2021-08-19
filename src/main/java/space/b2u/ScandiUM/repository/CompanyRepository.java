@@ -8,5 +8,5 @@ import space.b2u.ScandiUM.entity.Company;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     List<Company> findByInn(String inn);
-    List<Company> findByNameContainingIgnoreCase(String name);
+    List<Company> findByFullNameContainingIgnoreCase(String name);
 }

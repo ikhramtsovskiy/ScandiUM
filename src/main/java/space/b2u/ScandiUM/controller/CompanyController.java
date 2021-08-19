@@ -32,13 +32,13 @@ public class CompanyController {
 
     @GetMapping("/companies/name/{companyName}")
     public List<Company> getCompanyByName(@PathVariable String companyName) {
-        return repository.findByNameContainingIgnoreCase(companyName);
+        return repository.findByFullNameContainingIgnoreCase(companyName);
     }
 
     @GetMapping("/companies/search/{param}")
     public QueryResult<Company> findCompany(@PathVariable String param){
         QueryResult<Company> queryResult = new QueryResult<>();
-        List<Company> result = ListUtils.union(repository.findByInn(param), repository.findByNameContainingIgnoreCase(param));
+        List<Company> result = ListUtils.union(repository.findByInn(param), repository.findByFullNameContainingIgnoreCase(param));
         queryResult.setResults(result);
         queryResult.setCount(result.size());
         return queryResult;
