@@ -1,8 +1,11 @@
 package space.b2u.ScandiUM.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,6 +33,5 @@ public class Company {
     @Column(name="longitude")
     private Float Longitude;
 
-    public Company() {
-    }
+    public Company() { }
 }
